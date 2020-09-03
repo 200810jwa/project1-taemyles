@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Employee } from '../models/employee';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +8,7 @@ import { Employee } from '../models/employee';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public currentUser: Employee = undefined;
+  public currentUser: User = undefined;
   constructor(private router: Router) { }
 
   ngOnInit(): void {

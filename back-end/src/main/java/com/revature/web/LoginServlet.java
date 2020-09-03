@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.models.Employee;
+import com.revature.models.User;
 import com.revature.models.templates.LoginTemplate;
-import com.revature.services.EmployeeService;
+import com.revature.services.UserService;
 import com.revature.utils.ResponseUtil;
 
 /**
@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private ObjectMapper om = new ObjectMapper();
-	private EmployeeService es = new EmployeeService();
+	private UserService es = new UserService();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 		BufferedReader reader = request.getReader();
 		String body = reader.lines().collect(Collectors.joining());
 		LoginTemplate lt = om.readValue(body, LoginTemplate.class);
-		Employee e = es.login(lt);
+		User e = es.login(lt);
 		
 		if(e == null) {
 			response.setStatus(400);

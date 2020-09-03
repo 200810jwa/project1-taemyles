@@ -8,8 +8,8 @@ public class Reimbursement {
 	private int id;
 	private LocalDateTime timeSubmitted;
 	private LocalDateTime timeResolved;
-	private Employee author;
-	private Employee resolver;
+	private User author;
+	private User resolver;
 	private RStatus status;
 	private RType type;
 	
@@ -17,8 +17,8 @@ public class Reimbursement {
 		super();
 	}
 
-	public Reimbursement(int id, LocalDateTime timeSubmitted, LocalDateTime timeResolved, Employee author,
-			Employee resolver, RStatus status, RType type) {
+	public Reimbursement(int id, LocalDateTime timeSubmitted, LocalDateTime timeResolved, User author,
+			User resolver, RStatus status, RType type) {
 		super();
 		this.id = id;
 		this.timeSubmitted = timeSubmitted;
@@ -53,19 +53,19 @@ public class Reimbursement {
 		this.timeResolved = timeResolved;
 	}
 
-	public Employee getAuthor() {
+	public User getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(Employee author) {
+	public void setAuthor(User author) {
 		this.author = author;
 	}
 
-	public Employee getResolver() {
+	public User getResolver() {
 		return resolver;
 	}
 
-	public void setResolver(Employee resolver) {
+	public void setResolver(User resolver) {
 		this.resolver = resolver;
 	}
 

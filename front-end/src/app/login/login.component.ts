@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router';
-import {Employee} from 'src/app/models/employee';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   async sendLogin(): Promise<void> {
     try {
-      let employee = await this.http.post<Employee>('http://localhost:8080/back-end/login', {
+      let employee = await this.http.post<User>('http://localhost:8080/back-end/login', {
           username: this.username,
           password: this.password }, {
         withCredentials: true
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
 
       sessionStorage.setItem("currentUser", JSON.stringify(employee));
 
-      this.router.navigateByUrl("/manager");
+      this.router.navigateByUrl("/employee");
     } catch(error) {
       // Failed to login
       // console.log(error);

@@ -5,19 +5,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.revature.models.Employee;
+import com.revature.models.User;
 import com.revature.models.Role;
 import com.revature.utils.ConnectionUtil;
 
-public class EmployeeDAO implements IEmployeeDAO {
+public class UserDAO implements IUserDAO {
 
 	@Override
-	public Employee findById(int id) {
+	public User findById(int id) {
 		return null;
 	}
 
 	@Override
-	public Employee findByUsername(String username) {
+	public User findByUsername(String username) {
 		
 		try(Connection conn = ConnectionUtil.getConnection()) {
 			
@@ -30,13 +30,14 @@ public class EmployeeDAO implements IEmployeeDAO {
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()) {
-				return new Employee(
+				return new User(
 						rs.getInt("ers_users_id"),
 						rs.getString("user_first_name"),
 						rs.getString("user_last_name"),
 						rs.getString("ers_username"),
 						rs.getString("ers_password"),
-							rs.getInt("user_role_id") == 1 ? new Role(1, "Finance Manager") : new Role(2, "Employee") 
+						rs.getString("ers_email"),
+						rs.getInt("user_role_id") == 1 ? new Role(1, "Finance Manager") : new Role(2, "Employee") 
 						);
 			}
 		} catch(SQLException e) {
@@ -47,19 +48,19 @@ public class EmployeeDAO implements IEmployeeDAO {
 	}
 
 	@Override
-	public List<Employee> findAll() {
+	public List<User> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Employee insert(Employee e) {
+	public User insert(User e) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Employee update(Employee e) {
+	public User update(User e) {
 		// TODO Auto-generated method stub
 		return null;
 	}

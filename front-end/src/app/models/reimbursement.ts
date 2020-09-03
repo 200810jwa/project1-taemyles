@@ -1,4 +1,4 @@
-import { Employee } from './employee';
+import { User } from './user';
 import { Type } from '@angular/core';
 
 export class Reimbursement {
@@ -7,8 +7,8 @@ export class Reimbursement {
     public timeSubmitted: number;
     public timeResolved: number;
     public description: string;
-    public author: Employee;
-    public resolver: Employee;
+    public author: User;
+    public resolver: User;
     public status: RStatus;
     public type: RType;
 }
