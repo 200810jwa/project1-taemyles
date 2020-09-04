@@ -13,16 +13,16 @@ public class CorsFilter implements Filter {
 
 	/*
 	 * The idea of a Filter, is that before the request is delegated to a Servlet,
-	 * it must first pass through any and all filters
-	 * These filters can manipulate the request/response as needed
+	 * it must first pass through any and all filters These filters can manipulate
+	 * the request/response as needed
 	 */
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		
+
 		System.out.println("CORS Filter leveraged");
-		
-		if(!(response instanceof HttpServletResponse)) {
+
+		if (!(response instanceof HttpServletResponse)) {
 			chain.doFilter(request, response);
 			return;
 		}

@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router';
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
   async sendLogin(): Promise<void> {
     try {
       // This gets the user object
-      let user = await this.http.post<User>('http://localhost:8080/back-end/login', {
+      let user = await this.http.post<User>('http://localhost:8080/ReimburseWiz/login', {
           username: this.username,
           password: this.password,
         }, {

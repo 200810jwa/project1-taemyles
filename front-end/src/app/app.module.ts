@@ -5,21 +5,20 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ManagerComponent } from './pages/manager/manager.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 import { EmployeeComponent } from './pages/employee/employee.component';
-
+import { ManagerComponent } from './pages/manager/manager.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    LoginComponent,
     NavbarComponent,
-    ManagerComponent,
-    EmployeeComponent
+    LoginComponent,
+    HomeComponent,
+    EmployeeComponent,
+    ManagerComponent
   ],
   imports: [
     BrowserModule,
