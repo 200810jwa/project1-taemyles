@@ -11,7 +11,6 @@ public class UserService {
 	
 	public User login(LoginTemplate lt) {
 		User e = userDao.findByUsername(lt.getUsername());
-		
 		if(e == null) {
 			// Instead throw custom exception
 			return null;

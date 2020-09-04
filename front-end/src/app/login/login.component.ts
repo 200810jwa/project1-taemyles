@@ -12,7 +12,6 @@ export class LoginComponent implements OnInit {
   
   public username: string = "";
   public password: string = "";
-
   constructor(private router: Router, private http: HttpClient) { }
 
 
@@ -21,17 +20,25 @@ export class LoginComponent implements OnInit {
 
   async sendLogin(): Promise<void> {
     try {
-      let employee = await this.http.post<User>('http://localhost:8080/back-end/login', {
+      // This gets the user object
+      let user = await this.http.post<User>('http://localhost:8080/back-end/login', {
           username: this.username,
-          password: this.password }, {
+          password: this.password,
+        }, {
         withCredentials: true
         // Property that you want to have in order to leverage cookies
         // Our session will be stored as a cookie in the browser
       }).toPromise();
 
-      sessionStorage.setItem("currentUser", JSON.stringify(employee));
-
-      this.router.navigateByUrl("/employee");
+      sessionStorage.setItem("currentUser", JSON.stringify(user));
+      if (user.role.id == 1) {
+        this.router.navigateByUrl("/manager");
+      }
+      
+      else {
+        this.router.navigateByUrl("/employee");
+      }
+  
     } catch(error) {
       // Failed to login
       // console.log(error);
