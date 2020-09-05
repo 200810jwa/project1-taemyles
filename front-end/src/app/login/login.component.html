@@ -1,12 +1,25 @@
-<h1>Login</h1>
+<section class="login-block">
+  <div class="container">
+    <div class="row ">
+      <div class="col login-sec">
+        <h2 class="text-center">Login</h2>
+        <form class="login-form">
+          <div class="form-group">
+            <label for="exampleInputEmail1" style=color:#0069c0>Username</label>
+            <input [(ngModel)]="username" id="username" type="text" name="username" class="form-control" placeholder="">
 
-<div class="form-group">
-  <form class="form-control">
-    <label for="username">Username</label>
-    <input [(ngModel)]="username" id="username" type="text" name="username">
-    <br/>
-    <label for="password">Password</label>
-    <input [(ngModel)]="password" id="password" type="password" name="password">
-    <button type="submit" (click)="sendLogin()">SEND</button>
-  </form>
-</div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1" style=color:#0069c0>Password</label>
+            <input [(ngModel)]="password" id="password" type="password" name="password" class="form-control" placeholder="">
+          </div>
+
+          <div class="form-check text-center">
+            <button type="submit" (click)="sendLogin()" class="btn btn-login">Submit</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

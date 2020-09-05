@@ -1,0 +1,16 @@
+h1 { color: white; }
+h3 { color: white; }
+.padding-top-xl { padding-top: 6em }
+.padding-bot-xl { padding-bottom: 7.5em}
+
+.padding-top-xl1 { padding-top: 10em }
+.float-container {
+    padding: 20px;
+}
+
+.float-child {
+    width: 50%;
+    float: left;
+    padding: 20px;
+
+}
