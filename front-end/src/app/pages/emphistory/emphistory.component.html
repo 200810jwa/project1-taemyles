@@ -1,0 +1,53 @@
+<div class="container-fluid text-center padding-top-xl">
+    <div class="row content">
+        <div class="col-lg-2 sidenav">
+        </div>
+
+        <div class="col-md-8 rounded" style="background-color: rgb(122, 134, 160)">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title mt-3" style="color:black">Reimbursement History</h3>
+                </div>
+                <div class="panel-body">
+                    <input type="text" class="form-control" id="history-filter" placeholder="Filter" />
+                </div>
+                <table class="table table-hover" id="history-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Travel</td>
+                            <td>250</td>
+                            <td>Travel to florida</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Lodging</td>
+                            <td>5000</td>
+                            <td>Expense for chicago</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Other</td>
+                            <td>750</td>
+                            <td>Certification</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-12 mt-3">
+            <button type="submit" (click)="goback()" class="btn btn-lg btn-danger"> Go Back </button>
+        </div>
+
+        <div class="col-sm-2 sidenav">
+        </div>
+    </div>
+</div>

@@ -10,6 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { EmployeeComponent } from './pages/employee/employee.component';
 import { ManagerComponent } from './pages/manager/manager.component';
+import { EmpformComponent } from './pages/empform/empform.component';
+import { EmphistoryComponent } from './pages/emphistory/emphistory.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { ManagerComponent } from './pages/manager/manager.component';
     LoginComponent,
     HomeComponent,
     EmployeeComponent,
-    ManagerComponent
+    ManagerComponent,
+    EmpformComponent,
+    EmphistoryComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,17 @@
-<p>employee works!</p>
-<h1 id="welcome">{{ currentUser.firstName + " " + currentUser.lastName + " " + currentUser.role.id | titlecase }}</h1>
-<button type="submit" (click)="logout()">Logout</button>
+<div class="container-fluid text-center">    
+    <div class="row content">
+        <div class="col-lg-2 sidenav">
+        </div>
+            <div class="col-sm-8 center padding-top-xl1">
+                <h1 class="text-center">Welcome {{ currentUser.firstName + " " + currentUser.lastName }} </h1>
+
+                <div class="btn-group col text-center padding-top-xl1">
+                    <button type="submit" (click)="formpage()" class="btn btn-primary btn-lg button-padding-top button-padding-bot">Fill out expense form</button>
+                    <button type="submit" (click)="historypage()" class="btn btn-primary btn-lg button-padding-top button-padding-bot">Reimbursement history</button>
+                </div>
+            </div>
+
+        <div class="col-sm-2 sidenav">
+        </div>
+    </div>
+</div>

@@ -15,6 +15,14 @@ export class EmployeeComponent implements OnInit {
     this.currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   }
 
+  formpage(): void {
+    this.router.navigateByUrl("/empform");
+  }
+  
+  historypage(): void {
+    this.router.navigateByUrl("/emphistory");
+  }
+  
   logout(): void {
     sessionStorage.removeItem("currentUser");
     this.router.navigateByUrl("/home");
