@@ -26,9 +26,7 @@ export class LoginComponent implements OnInit {
           username: this.username,
           password: this.password,
         }, {
-        withCredentials: true
-        // Property that you want to have in order to leverage cookies
-        // Our session will be stored as a cookie in the browser
+        withCredentials: true // cookie
       }).toPromise();
 
       sessionStorage.setItem("currentUser", JSON.stringify(user));

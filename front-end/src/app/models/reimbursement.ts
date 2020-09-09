@@ -4,9 +4,10 @@ import { Type } from '@angular/core';
 export class Reimbursement {
     public id: number;
     public amount: number;
-    public timeSubmitted: number;
-    public timeResolved: number;
+    public timeSubmitted: Date;
+    public timeResolved: Date;
     public description: string;
+    public receipt: Blob;
     public author: User;
     public resolver: User;
     public status: RStatus;

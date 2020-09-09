@@ -36,7 +36,7 @@ public class UserDAO implements IUserDAO {
 		}
 		return null;
 	}
-
+	
 	@Override
 	public User findByUsername(String username) {
 		try(Connection conn = ConnectionUtil.getConnection()) {

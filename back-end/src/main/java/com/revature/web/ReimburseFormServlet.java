@@ -8,46 +8,40 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.User;
-import com.revature.models.templates.LoginTemplate;
-import com.revature.services.UserService;
-import com.revature.utils.ResponseUtil;
+import com.revature.models.templates.ReimburseTemplate;
+import com.revature.services.ReimburseService;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class ReimburseFormServlet
  */
-public class LoginServlet extends HttpServlet {
+public class ReimburseFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
 	private ObjectMapper om = new ObjectMapper();
-	private UserService es = new UserService();
-       
+	private ReimburseService reimServ = new ReimburseService();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public ReimburseFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
-
+    
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BufferedReader reader = request.getReader();
 		String body = reader.lines().collect(Collectors.joining());
-		LoginTemplate lt = om.readValue(body, LoginTemplate.class);
-		User e = es.login(lt);
-		
-		if(e == null) {
+		User u = (User) request.getSession().getAttribute("currentUser");
+		if(u == null) {
 			response.setStatus(400);
-		} else {
-			HttpSession session = request.getSession();
-			session.setAttribute("currentUser", e);
-			ResponseUtil.writeJSON(response, e);
+		}
+		else {
+			ReimburseTemplate reim = om.readValue(body, ReimburseTemplate.class);
+			reimServ.addReimbursement(u, reim);
 		}
 	}
 }
