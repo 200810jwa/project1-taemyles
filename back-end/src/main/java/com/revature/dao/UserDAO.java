@@ -15,7 +15,7 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public User findById(int id) {
 		try(Connection conn = ConnectionUtil.getConnection()) {
-			String sql = "SELECT * FROM project1.ers_users WHERE ers_user_id = ?";
+			String sql = "SELECT * FROM project1.ers_users WHERE ers_users_id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();

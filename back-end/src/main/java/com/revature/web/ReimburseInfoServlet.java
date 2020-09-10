@@ -9,40 +9,38 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.User;
 import com.revature.models.templates.ReimburseTemplate;
 import com.revature.services.ReimburseService;
+import com.revature.utils.ResponseUtil;
 
 /**
- * Servlet implementation class ReimburseFormServlet
+ * Servlet implementation class ReimburseInfoServlet
  */
-public class ReimburseFormServlet extends HttpServlet {
+public class ReimburseInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ObjectMapper om = new ObjectMapper();
 	private ReimburseService reimServ = new ReimburseService();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReimburseFormServlet() {
+    public ReimburseInfoServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
-    
+
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BufferedReader reader = request.getReader();
-		String body = reader.lines().collect(Collectors.joining());
+
 		User u = (User) request.getSession().getAttribute("currentUser");
 		if(u == null) {
 			response.setStatus(400);
 		}
 		else {
-			System.out.println(body);
-			ReimburseTemplate reim = om.readValue(body, ReimburseTemplate.class);
-			reimServ.addReimbursement(u, reim);
-		}
+			ResponseUtil.writeJSON(response, reimServ.viewReimbursement(u));
+		};
 	}
+
 }

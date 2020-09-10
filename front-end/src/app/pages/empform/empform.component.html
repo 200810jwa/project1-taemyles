@@ -32,14 +32,15 @@
                             </div>
                             
                             <div class="form-group float-left" style="background-color:gainsboro">
-                                <input [(ngModel)]="receipt" id="receipt" type="file" name="receipt">
+                                <input type="file" (change)="fileChange($event)" accept=".png, .jpg, .jpeg, .pdf" />
+                                <!-- <input [(ngModel)]="receipt" id="receipt" type="file" name="receipt"> -->
                             </div>
                             
                         </div>
                     </div>
             
                     <div class="btn-group col-md-12 text-center">
-                        <button class="btn btn-lg main-btn" type="submit" (click)="sendForm()">Submit</button>
+                        <button class="btn btn-lg main-btn" type="button" (click)="sendForm()">Submit</button>
                     </div>
                     <div class="btn-group col-md-12 mt-4">
                         <button type="submit" (click)="goback()" class="btn btn-lg btn-danger"> Go Back </button>

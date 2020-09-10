@@ -37,4 +37,14 @@
     <servlet-name>ReimburseFormServlet</servlet-name>
     <url-pattern>/reimburseform</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ReimburseInfoServlet</display-name>
+    <servlet-name>ReimburseInfoServlet</servlet-name>
+    <servlet-class>com.revature.web.ReimburseInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReimburseInfoServlet</servlet-name>
+    <url-pattern>/reimburseInfo</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -7,7 +7,7 @@ export class Reimbursement {
     public timeSubmitted: Date;
     public timeResolved: Date;
     public description: string;
-    public receipt: Blob;
+    public receipt: Uint8Array;
     public author: User;
     public resolver: User;
     public status: RStatus;

@@ -18,26 +18,19 @@
                             <th>Type</th>
                             <th>Amount</th>
                             <th>Description</th>
+                            <th>Status</th>
+                            <th>Receipt</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody *ngFor="let r of reimbursement; let i = index">
                         <tr>
-                            <td>1</td>
-                            <td>Travel</td>
-                            <td>250</td>
-                            <td>Travel to florida</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Lodging</td>
-                            <td>5000</td>
-                            <td>Expense for chicago</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Other</td>
-                            <td>750</td>
-                            <td>Certification</td>
+                            <td>{{i+1}}</td>
+                            <td>{{r.type.name}}</td>
+                            <td>{{r.amount}}</td>
+                            <td>{{r.description}}</td>
+                            <td>{{r.status.name}}</td>
+                            <td><img [src]="DomSanitizer.bypassSecurityTrustUrl(image)"/></td>
+                            <!-- <td><img [src]="image"/></td> -->
                         </tr>
                     </tbody>
                 </table>

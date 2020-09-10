@@ -15,15 +15,14 @@ export class EmpformComponent implements OnInit {
   public timeSubmitted: Date = undefined;
   public timeResolved: Date = undefined;
   public description: string = "";
-  public receipt: any = undefined;
+  public receipt = null;
   public author: User = undefined;
   public resolver: User = undefined;
   public status: RStatus = undefined;
   public type: RType = undefined;
   public currentUser: User = undefined;
-
   constructor(private router: Router, private http: HttpClient) { }
-
+  
   ngOnInit(): void {
     this.currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   }
@@ -31,8 +30,32 @@ export class EmpformComponent implements OnInit {
   goback(): void {
     this.router.navigateByUrl("/employee");
   }
+  
+  fileChange(event) {
+    const comp = this;
+    const img = event.target.files[0] as File; // We get object with data like, name, lastModified, lastModifiedDate, size and type
+    const promise = new Promise((resolve) => {
+      let fileReader = new FileReader();
+      fileReader.readAsArrayBuffer(img);
+      fileReader.onload = function(ev) {
+
+      const arr = new Uint8Array(fileReader.result as ArrayBuffer);
+      const fileByteArray = [];
+        for (let i = 0; i < arr.length; i++) {
+          fileByteArray.push(arr[i]);
+        }
+      resolve(arr);
+      } 
+    });
+    promise.then(img => {
+      comp.receipt = img;
+    });
+  }
 
   async sendForm(): Promise<void> {
+    
+    var strReceipt = this.receipt.toString();
+    console.log(strReceipt);
     try {
       // This gets the user object
       let reimburse = await this.http.post<Reimbursement>('http://localhost:8080/ReimburseWiz/reimburseform', {
@@ -41,17 +64,17 @@ export class EmpformComponent implements OnInit {
         timeSubmitted: this.timeSubmitted,
         timeResolved: this.timeResolved,
         description: this.description,
-        receipt: this.receipt,
+        receipt: strReceipt,
         author: this.author,
         resolver: this.resolver,
         status: this.status,
         type: this.type
-  
         }, {
         withCredentials: true // cookie
       }).toPromise();
+      console.log(reimburse);
       sessionStorage.setItem("reimbursement", JSON.stringify(reimburse));
-
+      this.goback();
     } catch(error) {
       alert("Failed to submit the form");
     }

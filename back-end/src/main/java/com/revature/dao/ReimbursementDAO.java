@@ -28,39 +28,38 @@ public class ReimbursementDAO implements IReimbursementDAO{
 	@Override
 	public List<Reimbursement> findAll() {
 		List<Reimbursement> allReimbursement = new ArrayList<>();
-//		
-//		try(Connection conn = ConnectionUtil.getConnection()) {
-//			String sql = "SELECT * FROM project1.ers_reimbursement";
-//			PreparedStatement stmt = conn.prepareStatement(sql);
-//			ResultSet rs = stmt.executeQuery();
-//			
-//			while(rs.next()) {
-//				int id = rs.getInt("reimb_id");
-//				Double amount = rs.getDouble("reimb_amount");
-//				Timestamp submitted = rs.getTimestamp("reimb_submitted");
-//				Timestamp resolved = rs.getTimestamp("reimb_resolved");
-//				String description = rs.getString("reimb_description");
-//				String receipt = rs.getString("reimb_receipt");
-//				User author = userDao.findById(rs.getInt("reimb_author"));
-//				User resolver = userDao.findById(rs.getInt("reimb_resolver"));
-//
-//				RStatus statusId = rs.getInt("reimb_status_id") == 1 ? new RStatus (1, "pending")
-//						: rs.getInt("reimb_status_id") == 2 ? new RStatus (2, "approved") 
-//						: new RStatus (3, "denied");
-//				RType typeId = rs.getInt("reimb_type_id") == 1 ? new RType (1, "lodging")
-//						: rs.getInt("reimb_type_id") == 2 ? new RType (2, "travel")
-//						: rs.getInt("reimb_type_id") == 3 ? new RType (3, "food")
-//						: new RType(4, "other");
-//				
-//				Reimbursement reim = new Reimbursement(id, amount, submitted,
-//						resolved, description, receipt, author, resolver, statusId, typeId);
-//				allReimbursement.add(reim);
-//			}
-//		} catch(SQLException e) {
-//			e.printStackTrace();
-//			System.out.println("FAILED TO RETRIEVE ALL REIMBURSEMENTS");
-//			return null;
-//		}
+		
+		try(Connection conn = ConnectionUtil.getConnection()) {
+			String sql = "SELECT * FROM project1.ers_reimbursement";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				int id = rs.getInt("reimb_id");
+				Double amount = rs.getDouble("reimb_amount");
+				Timestamp submitted = rs.getTimestamp("reimb_submitted");
+				Timestamp resolved = rs.getTimestamp("reimb_resolved");
+				String description = rs.getString("reimb_description");
+				byte[] receipt = rs.getBytes("reimb_receipt");
+				User author = userDao.findById(rs.getInt("reimb_author"));
+				User resolver = userDao.findById(rs.getInt("reimb_resolver"));
+				RStatus statusId = rs.getInt("reimb_status_id") == 1 ? new RStatus (1, "pending")
+					: rs.getInt("reimb_status_id") == 2 ? new RStatus (2, "approved") 
+						: new RStatus (3, "denied");
+				RType typeId = rs.getInt("reimb_type_id") == 1 ? new RType (1, "lodging")
+						: rs.getInt("reimb_type_id") == 2 ? new RType (2, "travel")
+						: rs.getInt("reimb_type_id") == 3 ? new RType (3, "food")
+						: new RType(4, "other");
+				
+						Reimbursement reim = new Reimbursement(id, amount, submitted,
+						resolved, description, receipt, author, resolver, statusId, typeId);
+						allReimbursement.add(reim);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+			System.out.println("FAILED TO RETRIEVE ALL REIMBURSEMENTS");
+			return null;
+		}
 		return allReimbursement;
 	}
 
