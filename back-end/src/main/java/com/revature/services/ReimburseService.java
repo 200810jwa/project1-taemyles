@@ -50,7 +50,6 @@ public class ReimburseService {
 				utfToByte(reim.getReceipt()), reim.getAuthor(), u, reim.getStatus().equals("pending") ? new RStatus(1, reim.getStatus())
 				: reim.getStatus().equals("approved") ? new RStatus(2, reim.getStatus()) : new RStatus(3, reim.getStatus()),
 				null);
-		System.out.println(newReim);
 		boolean success = reimbursementDao.update(newReim);
 		if (success == false) {
 			return null;

@@ -29,34 +29,28 @@ public class PasswordService {
         try {
 			arrayBytes = myEncryptionKey.getBytes(UNICODE_FORMAT);
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         try {
 			ks = new DESedeKeySpec(arrayBytes);
 		} catch (InvalidKeyException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         try {
 			skf = SecretKeyFactory.getInstance(myEncryptionScheme);
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         try {
 			cipher = Cipher.getInstance(myEncryptionScheme);
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NoSuchPaddingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         try {
 			key = skf.generateSecret(ks);
 		} catch (InvalidKeySpecException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }

@@ -44,7 +44,6 @@ public class ManagerApprovalServlet extends HttpServlet {
 			response.setStatus(400);
 		}
 		else {
-			System.out.println(body);
 			ManagerReimburseTemplate reim = om.readValue(body, ManagerReimburseTemplate.class);
 			reimServ.updateReimbursement(u, reim);
 		}

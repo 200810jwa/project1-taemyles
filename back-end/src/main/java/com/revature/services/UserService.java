@@ -12,6 +12,17 @@ public class UserService {
 	
 	private IUserDAO userDao = new UserDAO();
 	private PasswordService passServ = new PasswordService();
+	
+	public UserService() {
+		super();
+		this.userDao = new UserDAO();
+	}
+	
+	public UserService(IUserDAO userDao) {
+		super();
+		this.userDao = userDao;
+	}
+	
 	public User login(LoginTemplate lt) {
 		User e = userDao.findByUsername(lt.getUsername());
 		if(e == null) {
