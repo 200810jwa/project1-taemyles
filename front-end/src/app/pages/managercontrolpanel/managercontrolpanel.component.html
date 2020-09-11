@@ -8,6 +8,9 @@
                 <div class="panel-heading">
                     <h3 class="panel-title mt-3" style="color:black">Reimbursement History</h3>
                 </div>
+                <div class="panel-body">
+                    <input class="form-control col-md-3 float-right my-3" [(ngModel)] = "statusFilter" placeholder="Search By Status"/>
+                </div>
                 <table class="table table-hover" id="history-table">
                     <thead>
                         <tr>
@@ -18,19 +21,22 @@
                             <th>Time Submitted</th>
                             <th>Time Resolved</th>
                             <th>Status</th>
-                            <th>Resolver</th>
+                            <th>Submitted By</th>
+                            <th>Resolved By</th>
                             <th>Receipt</th>
                         </tr>
                     </thead>
-                    <tbody *ngFor="let r of reimbursement; let i = index">
+                    <!--| myFilter: filterStatus-->
+                    <tbody *ngFor="let r of reimbursement | myFilter:statusFilter">
                         <tr>
-                            <td>{{i+1}}</td>
+                            <td>{{r.id}}</td>
                             <td>{{r.type.name}}</td>
                             <td>{{r.amount}}</td>
                             <td>{{r.description}}</td>
                             <td>{{r.timeSubmitted | date:'MM/dd/yyyy hh:mm:ss'}}</td>
                             <td>{{r.timeResolved == null ? 'N/A' : r.timeResolved | date:'MM/dd/yyyy hh:mm:ss'}}</td>
                             <td>{{r.status.name}}</td>
+                            <td>{{r.author == null ? 'N/A' : r.author.firstName + " " + r.author.lastName}}</td>
                             <td>{{r.resolver == null ? 'N/A' : r.resolver.firstName + " " + r.resolver.lastName}}</td>
                             <td><img src="assets/img/receipt.png" alt="image" width="50" class="rounded zoom"></td>
                         </tr>
@@ -38,9 +44,19 @@
                 </table>
             </div>
         </div>
-
+        <div class="input-group col-md-6 mt-3 mx-auto">
+            <input class="form-control" id="amount" [(ngModel)]="id" name="amount"  placeholder="Enter Reimburse ID">
+            <select class="col-sm-12 form-control" id="type" [(ngModel)]="status" name="type" >
+                <option [ngValue]="undefined" disabled  selected> Select Status </option>
+                <option value="approved">Approve</option>
+                <option value="denied">Deny</option>
+            </select>
+        </div>
+        <div class="col-lg-12 mt-3">
+            <button type="submit" (click)="sendApproval()" class="btn btn-lg btn-success"> Submit </button>
+        </div>
         <div class="col-md-12 mt-3">
-            <button type="submit" (click)="goback()" class="btn btn-lg btn-danger"> Go Back </button>
+            <button type="submit" (click)="goback()" class="btn btn-danger"> Go Back </button>
         </div>
 
         <div class="col-sm-2 sidenav">

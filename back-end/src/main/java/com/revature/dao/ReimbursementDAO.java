@@ -90,9 +90,22 @@ public class ReimbursementDAO implements IReimbursementDAO{
 	}
 
 	@Override
-	public Reimbursement update(Reimbursement e) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean update(Reimbursement reim) {
+		try (Connection conn = ConnectionUtil.getConnection()) {
+			String sql = "UPDATE project1.ers_reimbursement SET reimb_resolved = ?, reimb_resolver = ?, reimb_status_id = ? WHERE project1.ers_reimbursement.reimb_id = ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setTimestamp(1, reim.getTimeResolved());
+			stmt.setInt(2, reim.getResolver().getId());
+			stmt.setInt(3, reim.getStatus().getId());
+			stmt.setInt(4, reim.getId());
+			if (stmt.executeUpdate() != 0) {
+				return true;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	@Override

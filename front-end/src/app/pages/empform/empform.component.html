@@ -11,7 +11,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <select class="col-sm-12 form-control" id="type" [(ngModel)]="type" name="type">
-                                    <option value="" disabled selected>Reimbursement Type</option>
+                                    <option [ngValue]="undefined" disabled  selected> Select Type </option>
                                     <option value="lodging">Lodging</option>
                                     <option value="travel">Travel</option>
                                     <option value="food">Food</option>

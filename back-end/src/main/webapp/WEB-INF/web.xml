@@ -47,4 +47,24 @@
     <servlet-name>ReimburseInfoServlet</servlet-name>
     <url-pattern>/reimburseInfo</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ManagerReimburseServlet</display-name>
+    <servlet-name>ManagerReimburseServlet</servlet-name>
+    <servlet-class>com.revature.web.ManagerReimburseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManagerReimburseServlet</servlet-name>
+    <url-pattern>/managerReimbursement</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ManagerApprovalServlet</display-name>
+    <servlet-name>ManagerApprovalServlet</servlet-name>
+    <servlet-class>com.revature.web.ManagerApprovalServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManagerApprovalServlet</servlet-name>
+    <url-pattern>/managerapproval</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -4,6 +4,7 @@ import { User } from 'src/app/models/user';
 import { RStatus, RType, Reimbursement } from 'src/app/models/reimbursement';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
+import { CompileShallowModuleMetadata } from '@angular/compiler';
 
 @Component({
   selector: 'app-emphistory',
@@ -17,20 +18,15 @@ export class EmphistoryComponent implements OnInit {
   public timeSubmitted: Date = undefined;
   public timeResolved: Date = undefined;
   public description: string = "";
-  public receipt: any;
+  public receipt: Uint8Array = undefined;
   public author: User = undefined;
   public resolver: User = undefined;
   public status: RStatus = undefined;
   public type: RType = undefined;
   public currentUser: User = undefined;
   public image: any;
-
-  constructor(private router: Router, private http: HttpClient, private DomSanitizer: DomSanitizer) { }
-  
+  constructor(private router: Router, private http: HttpClient, private domSanitizer: DomSanitizer) { }
   async ngOnInit(): Promise<void> {
-    // const reader = new FileReader();
-    // reader.onload = (e) => this.image = e.target.result;
-    // reader.readAsDataURL(new Blob([this.receipt]));
     try {
       // This gets the user object
       let reimburse = await this.http.post<Reimbursement[]>('http://localhost:8080/ReimburseWiz/reimburseInfo', {
@@ -48,10 +44,10 @@ export class EmphistoryComponent implements OnInit {
         withCredentials: true // cookie
       }).toPromise();
       this.reimbursement = reimburse;
-      var base64String = btoa(String.fromCharCode.apply(null, new Uint8Array(this.receipt)));
-      console.log(base64String);
-      this.image = 'data:image/jpeg;base64,' + base64String;
-      console.log(this.reimbursement);
+       for (var i = 0; i < this.reimbursement.length; i++) {
+        console.log(this.reimbursement[i].receipt)
+        
+       }
     } catch(error) {
       alert("Failed to retreive reimbursement info");
     }

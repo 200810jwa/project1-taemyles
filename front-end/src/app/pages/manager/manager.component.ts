@@ -14,7 +14,9 @@ export class ManagerComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   }
-
+  controlPanelPage(): void {
+    this.router.navigateByUrl("/managercontrolpanel");
+  }
   logout(): void {
     sessionStorage.removeItem("currentUser");
     this.router.navigateByUrl("/home");

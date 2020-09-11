@@ -5,7 +5,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import com.revature.dao.IReimbursementDAO;
 import com.revature.dao.IUserDAO;
 import com.revature.dao.ReimbursementDAO;
@@ -14,23 +13,29 @@ import com.revature.models.RStatus;
 import com.revature.models.RType;
 import com.revature.models.Reimbursement;
 import com.revature.models.User;
+import com.revature.models.templates.ManagerReimburseTemplate;
 import com.revature.models.templates.ReimburseTemplate;
 
 public class ReimburseService {
 	private IReimbursementDAO reimbursementDao = new ReimbursementDAO();
 	private IUserDAO userDao = new UserDAO();
-	Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 	
-	//(int id, double amount, Timestamp timeSubmitted, Timestamp timeResolved,
-	//String description, Blob receipt, User author, User resolver, RStatus status, RType type)
+	public ReimburseService() {
+		super();
+		this.reimbursementDao = new ReimbursementDAO();
+	}
+	
+	public ReimburseService(IReimbursementDAO reimDao) {
+		super();
+		this.reimbursementDao = reimDao;
+	}
 	
 	public Reimbursement addReimbursement(User u, ReimburseTemplate reim) {
 		Reimbursement newReim = null;
-		newReim = new Reimbursement(0, reim.getAmount(), timestamp,
+		newReim = new Reimbursement(0, reim.getAmount(), new Timestamp(System.currentTimeMillis()),
 				null, reim.getDescription(), utfToByte(reim.getReceipt()), u, null, new RStatus(1, "pending"),
 				reim.getType().equals("lodging") ? new RType(1, reim.getType()) : reim.getType().equals("travel") ? new RType(2, reim.getType())
 				: reim.getType().equals("food") ? new RType(3,reim.getType()) : new RType(4, reim.getType()));
-		System.out.println(newReim);
 		int new_id = reimbursementDao.insert(newReim);
 		if (new_id == 0) {
 			return null;
@@ -38,6 +43,21 @@ public class ReimburseService {
 		newReim.setId(new_id);
 		return newReim;
 	}
+
+	public Boolean updateReimbursement(User u, ManagerReimburseTemplate reim) {
+		Reimbursement newReim = null;
+		newReim = new Reimbursement(reim.getId(), reim.getAmount(), reim.getTimeSubmitted(), new Timestamp(System.currentTimeMillis()), reim.getDescription(),
+				utfToByte(reim.getReceipt()), reim.getAuthor(), u, reim.getStatus().equals("pending") ? new RStatus(1, reim.getStatus())
+				: reim.getStatus().equals("approved") ? new RStatus(2, reim.getStatus()) : new RStatus(3, reim.getStatus()),
+				null);
+		System.out.println(newReim);
+		boolean success = reimbursementDao.update(newReim);
+		if (success == false) {
+			return null;
+		}
+		return true;
+	}
+	
 	public List<Reimbursement> viewReimbursement(User u) {
 		List<Reimbursement> allReim = new ArrayList<Reimbursement>();
 		List<Reimbursement> retReim = new ArrayList<Reimbursement>();
@@ -49,6 +69,13 @@ public class ReimburseService {
 		}
 		return retReim;
 	}
+	
+	public List<Reimbursement> viewAllReimbursement() {
+		List<Reimbursement> allReim = new ArrayList<Reimbursement>();
+		allReim = reimbursementDao.findAll();
+		return allReim;
+	}
+	
 	public byte[] utfToByte(String s) {
 		byte[] bytes = null;
 		try {

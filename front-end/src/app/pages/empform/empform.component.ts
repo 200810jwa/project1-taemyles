@@ -53,7 +53,6 @@ export class EmpformComponent implements OnInit {
   }
 
   async sendForm(): Promise<void> {
-    
     var strReceipt = this.receipt.toString();
     console.log(strReceipt);
     try {

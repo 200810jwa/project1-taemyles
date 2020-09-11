@@ -12,6 +12,9 @@ import { EmployeeComponent } from './pages/employee/employee.component';
 import { ManagerComponent } from './pages/manager/manager.component';
 import { EmpformComponent } from './pages/empform/empform.component';
 import { EmphistoryComponent } from './pages/emphistory/emphistory.component';
+import { ManagercontrolpanelComponent } from './pages/managercontrolpanel/managercontrolpanel.component';
+import { MyFilterPipe } from './my-filter.pipe';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +25,9 @@ import { EmphistoryComponent } from './pages/emphistory/emphistory.component';
     EmployeeComponent,
     ManagerComponent,
     EmpformComponent,
-    EmphistoryComponent
+    EmphistoryComponent,
+    ManagercontrolpanelComponent,
+    MyFilterPipe,
   ],
   imports: [
     BrowserModule,
