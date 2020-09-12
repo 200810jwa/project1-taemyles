@@ -14,6 +14,7 @@ import { EmpformComponent } from './pages/empform/empform.component';
 import { EmphistoryComponent } from './pages/emphistory/emphistory.component';
 import { ManagercontrolpanelComponent } from './pages/managercontrolpanel/managercontrolpanel.component';
 import { MyFilterPipe } from './my-filter.pipe';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { MyFilterPipe } from './my-filter.pipe';
     EmphistoryComponent,
     ManagercontrolpanelComponent,
     MyFilterPipe,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

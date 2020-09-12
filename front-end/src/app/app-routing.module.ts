@@ -7,9 +7,11 @@ import { EmployeeComponent } from './pages/employee/employee.component';
 import { EmpformComponent } from './pages/empform/empform.component';
 import { EmphistoryComponent } from './pages/emphistory/emphistory.component';
 import { ManagercontrolpanelComponent } from './pages/managercontrolpanel/managercontrolpanel.component'
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
+  { path: "about", component: AboutComponent },
   { path: "login", component: LoginComponent },
   { path: "manager", component: ManagerComponent },
   { path: "employee", component: EmployeeComponent },
