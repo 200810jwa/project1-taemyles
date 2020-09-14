@@ -29,7 +29,7 @@ export class EmphistoryComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     try {
       // This gets the user object
-      let reimburse = await this.http.post<Reimbursement[]>('http://localhost:8080/ReimburseWiz/reimburseInfo', {
+      let reimburse = await this.http.post<Reimbursement[]>('http://ec2-18-206-232-8.compute-1.amazonaws.com:8085/ReimburseWiz/reimburseInfo', {
         id: this.id,
         amount: this.amount,
         timeSubmitted: this.timeSubmitted,

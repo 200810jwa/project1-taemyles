@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
   async sendRegister(): Promise<void> {
     try {
       // This gets the user object
-      let user = await this.http.post<User>('http://localhost:8080/ReimburseWiz/register', {
+      let user = await this.http.post<User>('http://ec2-18-206-232-8.compute-1.amazonaws.com:8085/ReimburseWiz/register', {
           fName: this.fName,
           lName: this.lName,
           username: this.username,

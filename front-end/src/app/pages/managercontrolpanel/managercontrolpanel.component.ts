@@ -44,7 +44,7 @@ export class ManagercontrolpanelComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     try {
      // This gets the user object
-      let reimburse = await this.http.post<Reimbursement[]>('http://localhost:8080/ReimburseWiz/managerReimbursement', {
+      let reimburse = await this.http.post<Reimbursement[]>('http://ec2-18-206-232-8.compute-1.amazonaws.com:8085/ReimburseWiz/managerReimbursement', {
         id: this.id,
         amount: this.amount,
         timeSubmitted: this.timeSubmitted,
@@ -69,7 +69,7 @@ export class ManagercontrolpanelComponent implements OnInit {
   console.log(strReceipt);
   try {
     // This gets the user object
-    let reimburse = await this.http.post<Reimbursement>('http://localhost:8080/ReimburseWiz/managerapproval', {
+    let reimburse = await this.http.post<Reimbursement>('http://ec2-18-206-232-8.compute-1.amazonaws.com:8085/ReimburseWiz/managerapproval', {
       id: this.id,
       amount: this.amount,
       timeSubmitted: this.timeSubmitted,

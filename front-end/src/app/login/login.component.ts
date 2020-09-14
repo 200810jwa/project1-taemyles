@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   async sendLogin(): Promise<void> {
     try {
       // This gets the user object
-      let user = await this.http.post<User>('http://localhost:8080/ReimburseWiz/login', {
+      let user = await this.http.post<User>('http://ec2-18-206-232-8.compute-1.amazonaws.com:8085/ReimburseWiz/login', {
           username: this.username,
           password: this.password,
         }, {

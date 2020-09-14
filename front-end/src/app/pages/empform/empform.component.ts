@@ -57,7 +57,7 @@ export class EmpformComponent implements OnInit {
     console.log(strReceipt);
     try {
       // This gets the user object
-      let reimburse = await this.http.post<Reimbursement>('http://localhost:8080/ReimburseWiz/reimburseform', {
+      let reimburse = await this.http.post<Reimbursement>('http://ec2-18-206-232-8.compute-1.amazonaws.com:8085/ReimburseWiz/reimburseform', {
         id: this.id,
         amount: this.amount,
         timeSubmitted: this.timeSubmitted,
