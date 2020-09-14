@@ -12,7 +12,7 @@
 	</properties>
 
 	<build>
-		<finalname>ReimburseWiz</finalname>
+		<finalName>ReimburseWiz</finalName>
 	</build>
 
 	<dependencies>
