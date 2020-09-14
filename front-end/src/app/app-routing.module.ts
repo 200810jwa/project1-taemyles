@@ -8,11 +8,13 @@ import { EmpformComponent } from './pages/empform/empform.component';
 import { EmphistoryComponent } from './pages/emphistory/emphistory.component';
 import { ManagercontrolpanelComponent } from './pages/managercontrolpanel/managercontrolpanel.component'
 import { AboutComponent } from './about/about.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "about", component: AboutComponent },
   { path: "login", component: LoginComponent },
+  { path: "register", component: RegisterComponent},
   { path: "manager", component: ManagerComponent },
   { path: "employee", component: EmployeeComponent },
   { path: "empform", component: EmpformComponent },

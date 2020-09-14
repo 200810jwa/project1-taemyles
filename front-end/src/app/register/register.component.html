@@ -1,0 +1,32 @@
+<section class="login-block">
+  <div class="container">
+    <div class="row ">
+      <div class="col login-sec mt-5">
+        <h2 class="text-center">Registration Form</h2>
+        <form>
+          <div class="row">
+              <div class="col-md-6"> <input [(ngModel)]="fName" name="fName" type="text" class="form-control" placeholder="First Name" required> </div>
+              <div class="col-md-6"> <input [(ngModel)]="lName" name="lName" type="text" class="form-control" placeholder="Last Name" required> </div>
+          </div>
+          <div class="row mt-3">
+              <div class="col-md-12">
+                <input [(ngModel)]="username" name="username" type="text" class="form-control" placeholder="Username" required> 
+              </div>  
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-12"> <input [(ngModel)]="password" name="password" type="text" class="form-control" placeholder="Password" required> </div>  
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-12"> <input [(ngModel)]="vPassword" name="vPassword" type="text" class="form-control" placeholder="Verify Password" required> </div>  
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-12"> <input [(ngModel)]="email" name="email" type="text" class="form-control" placeholder="Email" required> </div>  
+          </div>
+          <div class="form-check text-center mt-3">
+            <button type="submit" (click)="sendRegister()" class="btn btn-login">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

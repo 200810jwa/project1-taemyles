@@ -44,4 +44,8 @@ export class LoginComponent implements OnInit {
       alert("Failed to login");
     }
   }
+
+  registerPage(): void {
+    this.router.navigateByUrl("/register");
+  }
 }

@@ -15,6 +15,7 @@ import { EmphistoryComponent } from './pages/emphistory/emphistory.component';
 import { ManagercontrolpanelComponent } from './pages/managercontrolpanel/managercontrolpanel.component';
 import { MyFilterPipe } from './my-filter.pipe';
 import { AboutComponent } from './about/about.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { AboutComponent } from './about/about.component';
     ManagercontrolpanelComponent,
     MyFilterPipe,
     AboutComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

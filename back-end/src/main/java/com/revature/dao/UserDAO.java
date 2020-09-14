@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,22 +96,21 @@ public class UserDAO implements IUserDAO {
 	public int insert(User u) {
 		try (Connection conn = ConnectionUtil.getConnection()) {
 			String sql = "INSERT INTO project1.ers_users "
-				+ "(user_first_name, user_last_name, ers_username, ers_password, user_email, user_role_id)"
+				+ "(ers_username, ers_password, user_first_name, user_last_name, user_email, user_role_id)"
 				+ " VALUES (?, ?, ?, ?, ?, ?)";
-			PreparedStatement stmt = conn.prepareStatement(sql);
+			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, u.getFirstName());
 			stmt.setString(2, u.getLastName());
 			stmt.setString(3, u.getUsername());
 			stmt.setString(4, u.getPassword());
 			stmt.setString(5, u.getEmail());
-			stmt.setObject(6, u.getRole());
-			
-			ResultSet rs;
-			if((rs = stmt.executeQuery()) != null) {
-				rs.next();
-				int id = rs.getInt(1);
-				return id;
-			}
+			stmt.setObject(6, u.getRole().getId());
+			int update = stmt.executeUpdate();
+			ResultSet rs = stmt.getGeneratedKeys();
+			 if (rs != null && rs.next()) {
+				  int key = (int) rs.getLong(1);
+				  return key;
+				 }
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("FAILED TO INSERT USER");
