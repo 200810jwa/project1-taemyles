@@ -13,12 +13,19 @@ export class LoginComponent implements OnInit {
   
   public username: string = "";
   public password: string = "";
-  
+  public show: boolean = false;
   constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
   }
 
+  wait(ms){
+    var start = new Date().getTime();
+    var end = start;
+    while(end < start + ms) {
+      end = new Date().getTime();
+   }
+ }
   async sendLogin(): Promise<void> {
     try {
       // This gets the user object
@@ -28,8 +35,8 @@ export class LoginComponent implements OnInit {
         }, {
         withCredentials: true // cookie
       }).toPromise();
-
       sessionStorage.setItem("currentUser", JSON.stringify(user));
+      this.wait(1000);
       if (user.role.id == 1) {
         this.router.navigateByUrl("/manager");
       }
@@ -43,6 +50,13 @@ export class LoginComponent implements OnInit {
       // console.log(error);
       alert("Failed to login");
     }
+  }
+  
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
+  dispAlert() {
+    this.show = true;
   }
 
   registerPage(): void {

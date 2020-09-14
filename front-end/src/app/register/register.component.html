@@ -23,7 +23,10 @@
             <div class="col-md-12"> <input [(ngModel)]="email" name="email" type="text" class="form-control" placeholder="Email" required> </div>  
           </div>
           <div class="form-check text-center mt-3">
-            <button type="submit" (click)="sendRegister()" class="btn btn-login">Register</button>
+            <button type="submit" (click)="sendRegister(); dispAlert()" class="btn btn-login col-md-5">Register</button>
+          </div>
+          <div *ngIf="show" class="alert alert-success mt-3 text-center" role="alert">
+            You have successfully registered!
           </div>
         </form>
       </div>

@@ -16,10 +16,19 @@ export class RegisterComponent implements OnInit {
   public password: string = "";
   public vPassword: string = "";
   public email: string = "";
+  public show: boolean = false;
   constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
   }
+
+  wait(ms){
+    var start = new Date().getTime();
+    var end = start;
+    while(end < start + ms) {
+      end = new Date().getTime();
+   }
+ }
 
   async sendRegister(): Promise<void> {
     try {
@@ -34,12 +43,17 @@ export class RegisterComponent implements OnInit {
         }, {
         withCredentials: true // cookie
       }).toPromise();
-
       sessionStorage.setItem("currentUser", JSON.stringify(user));
+      this.wait(1000);
+      this.router.navigateByUrl("/login");
     } catch(error) {
       // Failed to login
       // console.log(error);
       alert("Failed to Register");
     }
+  }
+  
+  dispAlert() {
+    this.show = true;
   }
 }
